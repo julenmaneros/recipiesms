@@ -1,10 +1,24 @@
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
 namespace recipiesms.Controllers
 {
     [ApiController]
-    public class RecipiesController: ControllerBase
+    [Route("api/recipies")]
+    public class RecipiesController : ControllerBase
     {
-        
+        [HttpGet]
+        public JsonResult GetRecipies()
+        {
+            return new JsonResult(RecipiesDataStore.Current.Recipies);
+        }
+
+        [HttpGet("{id}")]
+        public JsonResult GetRecipie(int id)
+        {
+            return new JsonResult(
+                RecipiesDataStore.Current.Recipies.FirstOrDefault(r => r.Id == id));
+        }
     }
 }
