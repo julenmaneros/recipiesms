@@ -9,16 +9,22 @@ namespace recipiesms.Controllers
     public class RecipiesController : ControllerBase
     {
         [HttpGet]
-        public JsonResult GetRecipies()
+        public IActionResult GetRecipies()
         {
-            return new JsonResult(RecipiesDataStore.Current.Recipies);
+            return Ok(RecipiesDataStore.Current.Recipies);
         }
 
         [HttpGet("{id}")]
-        public JsonResult GetRecipie(int id)
+        public IActionResult GetRecipie(int id)
         {
-            return new JsonResult(
-                RecipiesDataStore.Current.Recipies.FirstOrDefault(r => r.Id == id));
+            var recipie = RecipiesDataStore.Current.Recipies.FirstOrDefault(r => r.Id == id);
+
+            if (recipie == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(recipie);
         }
     }
 }
