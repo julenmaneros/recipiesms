@@ -36,6 +36,8 @@ namespace recipiesms
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStatusCodePages();
+
             app.UseRouting();
 
             app.UseAuthorization();
