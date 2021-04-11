@@ -64,6 +64,7 @@ namespace service
                     "/swagger/RecipiesOpenAPISpecification/swagger.json",
                     "Recipies API"
                 );
+                setupAction.RoutePrefix = "";
             });
 
             app.UseRouting();
