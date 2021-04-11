@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>service</name>
+    </assembly>
+    <members>
+        <member name="M:service.Controllers.RecipiesController.GetRecipie(System.Int32)">
+            <summary>
+            Get recipie by its id
+            </summary>
+            <param name="id">The id of the recipie you want to get</param>
+            <returns>A recipie with id, etc.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -43,6 +44,10 @@ namespace service
                         Version = "1"
                     }
                 );
+
+                var xmlCommentsFile = "service.xml";
+                var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
+                setupAction.IncludeXmlComments(xmlCommentsFile);
             });
         }
 

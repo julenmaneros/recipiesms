@@ -15,6 +15,11 @@ namespace service.Controllers
             return Ok(RecipiesDataStore.Current.Recipies);
         }
 
+        /// <summary>
+        /// Get recipie by its id
+        /// </summary>
+        /// <param name="id">The id of the recipie you want to get</param>
+        /// <returns>A recipie with id, etc.</returns>
         [HttpGet("{id}", Name = "GetRecipie")]
         public IActionResult GetRecipie(int id)
         {
