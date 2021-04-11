@@ -32,6 +32,18 @@ namespace service
                 .AddMvcOptions(o => {
                     o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());                    
                 });
+
+            services.AddSwaggerGen(setupAction => 
+            {
+                setupAction.SwaggerDoc(
+                    "RecipiesOpenAPISpecification",
+                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                    {
+                        Title = "Recipies API",
+                        Version = "1"
+                    }
+                );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +55,16 @@ namespace service
             }
 
             app.UseStatusCodePages();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(setupAction => 
+            {
+                setupAction.SwaggerEndpoint(
+                    "/swagger/RecipiesOpenAPISpecification/swagger.json",
+                    "Recipies API"
+                );
+            });
 
             app.UseRouting();
 
