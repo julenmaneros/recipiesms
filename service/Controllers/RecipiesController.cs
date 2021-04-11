@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using recipiesms.Models;
+using service.Models;
 
-namespace recipiesms.Controllers
+namespace service.Controllers
 {
     [ApiController]
     [Route("api/recipies")]

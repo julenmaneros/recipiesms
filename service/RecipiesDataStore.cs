@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using recipiesms.Models;
+using service.Models;
 
 public class RecipiesDataStore
 {

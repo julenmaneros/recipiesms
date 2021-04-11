@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace recipiesms.Models
+namespace service.Models
 {
     public class RecipieDto
     {
