@@ -1,4 +1,5 @@
 using System;
+using CSharpFunctionalExtensions;
 
 namespace Logic.Recipies
 {
@@ -6,13 +7,17 @@ namespace Logic.Recipies
     {
         public string Title { get; }
 
-        public Recipie(string title)
+        private Recipie(string title)
         {
-            if (string.IsNullOrEmpty(title))
-            {
-                throw new ArgumentNullException();
-            }
             Title = title;
+        }
+
+        public static Result<Recipie> Create(string title) {
+            
+            if (string.IsNullOrEmpty(title))
+                return Result.Failure<Recipie>("Title can't be empty");
+
+            return new Recipie(title);
         }
     }
 }

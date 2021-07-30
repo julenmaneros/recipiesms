@@ -1,3 +1,4 @@
+using CSharpFunctionalExtensions;
 using Logic.Recipies;
 using Xunit;
 
@@ -8,8 +9,10 @@ namespace test
         [Fact]
         public void HaveATitle()
         {
-            Recipie sut = new Recipie("Crema de calabaza");
-            Assert.IsType<Recipie>(sut);
+            Result<Recipie> sut = Recipie.Create("Crema de calabaza");
+            Assert.IsType<Result<Recipie>>(sut);
+            Assert.True(sut.IsSuccess);
+            Assert.NotEmpty(sut.Value.Title);
         }
     }
 }
