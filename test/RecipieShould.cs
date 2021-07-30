@@ -1,4 +1,3 @@
-using System;
 using Logic.Recipies;
 using Xunit;
 
@@ -9,8 +8,8 @@ namespace test
         [Fact]
         public void HaveATitle()
         {
-            Recipie recipie = new Recipie("Crema de calabaza");
-            Assert.IsType<Recipie>(recipie);
+            Recipie sut = new Recipie("Crema de calabaza");
+            Assert.IsType<Recipie>(sut);
         }
     }
 }
