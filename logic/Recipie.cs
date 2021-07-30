@@ -12,10 +12,10 @@ namespace Logic.Recipies
             Title = title;
         }
 
-        public static Result<Recipie> Create(string title) {
+        public static Result<Recipie, Error> Create(string title) {
             
             if (string.IsNullOrEmpty(title))
-                return Result.Failure<Recipie>("Title can't be empty");
+                return Errors.Recipie.TitleIsRequired();
 
             return new Recipie(title);
         }

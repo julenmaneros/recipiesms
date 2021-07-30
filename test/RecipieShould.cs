@@ -9,10 +9,8 @@ namespace test
         [Fact]
         public void HaveATitle()
         {
-            Result<Recipie> sut = Recipie.Create("Crema de calabaza");
-            Assert.IsType<Result<Recipie>>(sut);
-            Assert.True(sut.IsSuccess);
-            Assert.NotEmpty(sut.Value.Title);
+            Result<Recipie, Error> sut = Recipie.Create(null);
+            Assert.True(sut.IsFailure);            
         }
     }
 }
