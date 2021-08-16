@@ -16,5 +16,9 @@ namespace Logic.RecipiesMicroservice
         {
             return new RecipieBook();
         }
+
+        public void AddRecipie(Recipie recipie) {
+            Recipies.Add(recipie);
+        }
     }
 }
