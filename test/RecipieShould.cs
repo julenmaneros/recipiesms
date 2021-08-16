@@ -1,5 +1,5 @@
 using CSharpFunctionalExtensions;
-using Logic.Recipies;
+using Logic.RecipiesMicroservice;
 using Xunit;
 
 namespace test

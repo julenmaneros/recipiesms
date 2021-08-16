@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using CSharpFunctionalExtensions;
 
-namespace Logic.Recipies
+namespace Logic.RecipiesMicroservice
 {
     public sealed class Error : ValueObject
     {

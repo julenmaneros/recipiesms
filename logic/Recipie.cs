@@ -1,7 +1,6 @@
-using System;
 using CSharpFunctionalExtensions;
 
-namespace Logic.Recipies
+namespace Logic.RecipiesMicroservice
 {
     public class Recipie : Entity
     {
