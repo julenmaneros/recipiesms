@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using service.Data;
 
 namespace service
 {
@@ -26,11 +28,12 @@ namespace service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplicationInsightsTelemetry();
+            services.AddDbContext<RecipiesMsDbContext>(options => options.UseInMemoryDatabase("RecipiesMsDb"));
 
             services.AddControllers()
-                .AddMvcOptions(o => {
-                    o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());                    
+                .AddMvcOptions(o =>
+                {
+                    o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
                 });
         }
 
@@ -40,6 +43,12 @@ namespace service
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+
+                var service = serviceScope.ServiceProvider;
+
+                FakeDataSeeder.Seed(service);
             }
 
             app.UseStatusCodePages();

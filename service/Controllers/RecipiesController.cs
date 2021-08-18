@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using service.Data;
 using service.Models;
 
 namespace service.Controllers
@@ -9,10 +9,19 @@ namespace service.Controllers
     [Route("api/recipies")]
     public class RecipiesController : ControllerBase
     {
+        private readonly RecipiesMsDbContext context;
+
+        public RecipiesController(RecipiesMsDbContext context)
+        {
+            this.context = context;
+        }
+        
         [HttpGet]
         public IActionResult GetRecipies()
         {
-            return Ok(RecipiesDataStore.Current.Recipies);
+            var recipieBook = context.RecipiesBooks.Single();
+            context.Entry(recipieBook).Collection(r => r.Recipies).Load();
+            return Ok(recipieBook);
         }
 
         [HttpGet("{id}", Name = "GetRecipie")]
