@@ -10,6 +10,11 @@ namespace service.Data
         public DbSet<Recipie> Recipies { get; set; }
 
         public RecipiesMsDbContext(DbContextOptions<RecipiesMsDbContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        {
+            modelBuilder.Entity<Recipie>().Property(r => r.Title);
+        }
     }
 
 }
