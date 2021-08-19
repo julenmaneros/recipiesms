@@ -1,5 +1,8 @@
 using System.Linq;
+using System.Threading.Tasks;
+using Logic.RecipiesMicroservice;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using service.Data;
 using service.Models;
 
@@ -17,10 +20,9 @@ namespace service.Controllers
         }
         
         [HttpGet]
-        public IActionResult GetRecipies()
+        public async Task<IActionResult> GetRecipies()
         {
-            var recipieBook = context.RecipiesBooks.Single();
-            context.Entry(recipieBook).Collection(r => r.Recipies).Load();
+            var recipieBook = await context.Set<RecipieBook>().Include(rb => rb.Recipies).SingleAsync();
             return Ok(recipieBook);
         }
 
